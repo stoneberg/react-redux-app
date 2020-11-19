@@ -13,7 +13,9 @@ function UserContainer({ fetchUsers, userData }) {
 			<div>
 				<h2>User List</h2>
 				<div>
-					{userData && userData.users && userData.users.map((user) => <p key={user.id}>{user.name}</p>)}
+					{userData &&
+						userData.users.length &&
+						userData.users.map((user) => <p key={user.id}>{user.name}</p>)}
 				</div>
 			</div>
 		)
@@ -22,7 +24,7 @@ function UserContainer({ fetchUsers, userData }) {
 
 const mapStateToProps = (state) => {
 	return {
-		userData: state.user,
+		userData: state.user, // root reducer prefix "user"
 	};
 };
 

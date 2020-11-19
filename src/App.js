@@ -8,12 +8,14 @@ import NewCakeContainer from './components/NewCakeContainer';
 import ItemContainer from './components/ItemContainer';
 import UserContainer from './components/UserContainer';
 import configureStore from './store/configureStore';
+import HooksUserContainer from './components/HooksUserContainer';
 
 function App() {
 	const store = configureStore();
 	return (
 		<Provider store={store}>
 			<div className='App'>
+				<HooksUserContainer />
 				<UserContainer />
 				<ItemContainer cake />
 				<ItemContainer />
