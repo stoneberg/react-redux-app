@@ -55,15 +55,14 @@ const appendIndicator = () => {
 	const div = document.createElement('div');
 	div.setAttribute('id', 'indicator');
 	document.getElementsByTagName('body')[0].appendChild(div);
-
-	var span = document.createElement('span');
+	const span = document.createElement('span');
 	span.classList.add('radius');
 	div.appendChild(span);
 };
 
 const removeIndicator = () => {
-	const elem = document.getElementById('indicator');
-	elem.parentNode.removeChild(elem);
+	const div = document.getElementById('indicator');
+	div.parentNode.removeChild(div);
 	document.body.classList.remove('loading-indicator');
 };
 
