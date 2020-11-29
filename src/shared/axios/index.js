@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { modalify } from 'react-modalify';
+import Notify from '../../components/modal/Notify';
 
 toast.configure();
+let notify = modalify(Notify);
 
 const instance = axios.create({
 	baseURL: 'https://jsonplaceholder.typicode.com',
@@ -31,6 +34,11 @@ instance.interceptors.response.use(
 			hideProgressBar: true,
 			draggable: false,
 			autoClose: 3000,
+		});
+		notify({
+			user: 'Tom',
+		}).then((returnValue) => {
+			console.log(returnValue);
 		});
 		removeIndicator();
 		return response;
