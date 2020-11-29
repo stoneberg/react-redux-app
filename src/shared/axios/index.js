@@ -26,7 +26,12 @@ instance.interceptors.response.use(
 	function (response) {
 		console.log('response....................', response);
 		// document.body.classList.remove('loading-indicator');
-		toast.info('Requet is successful!', { position: toast.POSITION.BOTTOM_CENTER, autoClose: 3000 });
+		toast.info('Requet is successful!', {
+			position: toast.POSITION.BOTTOM_CENTER,
+			hideProgressBar: true,
+			draggable: false,
+			autoClose: 3000,
+		});
 		removeIndicator();
 		return response;
 	},
@@ -34,32 +39,39 @@ instance.interceptors.response.use(
 	function (error) {
 		console.log('error======>', error);
 		console.log('error.response======>', error.response);
+		let errorMsg = '';
 		if (error.response && error.response.status) {
 			if (error.response.status === 400) {
 				console.log('400');
+				errorMsg = 'Bad Request';
 			} else if (error.response.status === 401) {
 				console.log('401');
+				errorMsg = 'Unauthorized';
 			} else if (error.response.status === 403) {
 				console.log('403');
+				errorMsg = 'Forbidden';
 			} else if (error.response.status === 404) {
 				console.log('404');
-				toast.error('Resource Not Found', {
-					position: toast.POSITION.BOTTOM_CENTER,
-					hideProgressBar: true,
-					draggable: false,
-					autoClose: 5000,
-				});
+				errorMsg = 'Not Found';
 			} else {
 				console.log('default');
+				errorMsg = 'Unknown Error';
 			}
-		} else {
-			console.log('error');
-			const errorMsg = error;
+
 			toast.error(`${errorMsg}`, {
 				position: toast.POSITION.BOTTOM_CENTER,
 				hideProgressBar: true,
 				draggable: false,
-				autoClose: 5000,
+				autoClose: 3000,
+			});
+		} else {
+			console.log('error');
+			errorMsg = error;
+			toast.error(`${errorMsg}`, {
+				position: toast.POSITION.BOTTOM_CENTER,
+				hideProgressBar: true,
+				draggable: false,
+				autoClose: 3000,
 			});
 		}
 		// document.body.classList.remove('loading-indicator');
