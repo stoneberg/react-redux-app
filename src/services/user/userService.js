@@ -5,7 +5,7 @@ import HTTP from '../../shared/axios';
 const fetchUsers = () => {
 	return (dispatch) => {
 		dispatch(fetchUsersRequest); // loading true
-		HTTP.get('users')
+		HTTP.get('users/1000000')
 			.then((response) => {
 				const users = response.data;
 				dispatch(fetchUsersSuccess(users));

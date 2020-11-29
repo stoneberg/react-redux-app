@@ -11,16 +11,22 @@ function HooksUserContainer() {
 	}, [dispatch]);
 
 	return (
-		(userData.error && <h2>{userData.error}</h2>) || (
+		<div>
+			<h2>User List</h2>
 			<div>
-				<h2>User List</h2>
-				<div>
-					{userData &&
-						userData.users.length &&
-						userData.users.map((user) => <p key={user.id}>{user.name}</p>)}
-				</div>
+				{userData && userData.users.length && userData.users.map((user) => <p key={user.id}>{user.name}</p>)}
 			</div>
-		)
+		</div>
+		// (userData.error && <h2>{userData.error}</h2>) || (
+		// 	<div>
+		// 		<h2>User List</h2>
+		// 		<div>
+		// 			{userData &&
+		// 				userData.users.length &&
+		// 				userData.users.map((user) => <p key={user.id}>{user.name}</p>)}
+		// 		</div>
+		// 	</div>
+		// )
 		// (userData.loading && <h2>Loading...</h2>) ||
 		// (userData.error && <h2>{userData.error}</h2>) || (
 		// 	<div>

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import Modal from 'react-modal';
 
 toast.configure();
 
@@ -44,13 +43,24 @@ instance.interceptors.response.use(
 				console.log('403');
 			} else if (error.response.status === 404) {
 				console.log('404');
+				toast.error('Resource Not Found', {
+					position: toast.POSITION.BOTTOM_CENTER,
+					hideProgressBar: true,
+					draggable: false,
+					autoClose: 5000,
+				});
 			} else {
 				console.log('default');
 			}
 		} else {
 			console.log('error');
-			// const errorMsg = error;
-			// toast.error(`${errorMsg}`, { position: toast.POSITION.BOTTOM_CENTER, autoClose: 5000 });
+			const errorMsg = error;
+			toast.error(`${errorMsg}`, {
+				position: toast.POSITION.BOTTOM_CENTER,
+				hideProgressBar: true,
+				draggable: false,
+				autoClose: 5000,
+			});
 		}
 		// document.body.classList.remove('loading-indicator');
 		removeIndicator();
